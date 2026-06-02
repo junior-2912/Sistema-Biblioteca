@@ -61,11 +61,14 @@ public class Biblioteca {
      * Busca um usuário pelo ID.
      */
     public Usuario buscarUsuario(Integer id) {
+        // Percorre o conjunto de usuários
         for (Usuario u : usuarios) {
+            // Se encontrar um usuário com o ID procurado, retorna imediatamente
             if (u.getId().equals(id)) {
                 return u;
             }
         }
+        // Se nenhum usuário foi encontrado, retorna null
         return null;
     }
 
@@ -73,11 +76,14 @@ public class Biblioteca {
      * Busca um livro pelo ISBN.
      */
     public Livro buscarLivro(String isbn) {
+        // Percorre o catálogo de livros
         for (Livro l : livros) {
+            // Se encontrar um livro com o ISBN procurado, retorna imediatamente
             if (l.getIsbn().equals(isbn)) {
                 return l;
             }
         }
+        // Se nenhum livro foi encontrado, retorna null
         return null;
     }
 
@@ -85,11 +91,16 @@ public class Biblioteca {
      * Processa a devolução de um livro emprestado.
      */
     public String devolverLivro (Usuario usuario, Livro livro) {
+        // Verifica se o livro está nos empréstimos do usuário
         if (!emprestimos.get(usuario).contains(livro)) {
+            // Se o livro não foi emprestado ao usuário, retorna mensagem de erro
             return "O livro " + livro.getTitulo() + " nao foi emprestado a " +  usuario.getNome();
         } else {
+            // Remove o livro do conjunto de empréstimos do usuário
             emprestimos.get(usuario).remove(livro);
+            // Marca o livro como devolvido
             livro.devolver();
+            // Retorna mensagem de sucesso
             return "O livro foi devolvido com sucesso!";
         }
     }

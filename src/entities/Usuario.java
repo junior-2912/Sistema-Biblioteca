@@ -65,7 +65,7 @@ public class Usuario {
      */
     @Override
     public int hashCode() {
-        // O hash é baseado unicamente no ID do usuário
+        // O hash é baseado unicamente no ID, pois o ID é o identificador único
         return Objects.hashCode(id);
     }
 }

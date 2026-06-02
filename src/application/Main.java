@@ -51,15 +51,16 @@ public class Main {
                     System.out.print("Digite o titulo do livro:");
                     String titulo = entrada.nextLine();
 
-
                     System.out.println("Digite o autor do livro");
                     String autor = entrada.nextLine();
 
                     System.out.print("Digite o ISBN do livro:");
                     String isbn = entrada.nextLine();
 
+                    // Cria um novo objeto Livro com os dados fornecidos
                     Livro livro = new Livro(titulo, isbn, autor);
 
+                    // Chama método da biblioteca para adicionar o livro ao catálogo
                     biblioteca.cadastrarLivro(livro);
                 }
 
@@ -69,76 +70,104 @@ public class Main {
                     System.out.println("CADASTRO DE USUARIOS");
                     System.out.println("-------------------");
 
+                    // Limpa o buffer de entrada
+                    entrada.nextLine();
                     System.out.print("Digite o nome:");
                     String nome = entrada.nextLine();
 
                     System.out.print("Digite o ID:");
                     Integer id = entrada.nextInt();
 
+                    // Cria um novo objeto Usuário com os dados fornecidos
                     Usuario usuario = new Usuario(nome, id);
 
+                    // Chama método da biblioteca para adicionar o usuário ao sistema
                     biblioteca.cadastrarUsuario(usuario);
                 }
 
                 // CASO 3: Emprestar um livro a um usuário
                 case 3 -> {
-                    System.out.print("Digite o ID de quem fara o emprestimo do livro");
+                    // Limpa o buffer e solicita o ID do usuário
+                    entrada.nextLine();
+                    System.out.print("Digite o ID de quem fara o emprestimo do livro: ");
                     Integer id = entrada.nextInt();
 
+                    // Busca o usuário no sistema
                     Usuario usuario = biblioteca.buscarUsuario(id);
 
+                    // Valida se o usuário existe
                     if (usuario == null) {
                         System.out.println("Usuario nao encontrado!");
                     } else {
                         System.out.println("Usuario encontrado!");
                     }
 
-                    //--------------------------------------------------
+                    // Solicita o ISBN do livro e busca no catálogo
+                    entrada.nextLine();
                     System.out.print("Digite o ISBN do livro que deseja emprestar: ");
                     String isbn = entrada.nextLine();
 
                     Livro livro = biblioteca.buscarLivro(isbn);
 
+                    // Valida se o livro existe
                     if (livro == null) {
                         System.out.println("Livro nao encontrado!");
                     } else  {
                         System.out.println("Livro encontrado!");
                     }
 
+                    // Registra o empréstimo e exibe confirmação
                     System.out.println(biblioteca.emprestarLivro(livro, usuario));
 
                 }
+                // CASO 4: Devolver um livro
                 case 4 -> {
-                    System.out.print("Digite o ID de quem fara o a devolucao do livro");
+                    // Limpa o buffer e solicita o ID do usuário
+                    entrada.nextLine();
+                    System.out.print("Digite o ID de quem fara a devolucao do livro: ");
                     Integer id = entrada.nextInt();
 
+                    // Busca o usuário no sistema
                     Usuario usuario = biblioteca.buscarUsuario(id);
 
+                    // Valida se o usuário existe
                     if (usuario == null) {
                         System.out.println("Usuario nao encontrado!");
                     } else {
                         System.out.println("Usuario encontrado!");
                     }
 
-                    //--------------------------------------------------
+                    // Solicita o ISBN do livro e busca no catálogo
+                    entrada.nextLine();
                     System.out.print("Digite o ISBN do livro que deseja devolver: ");
                     String isbn = entrada.nextLine();
 
                     Livro livro = biblioteca.buscarLivro(isbn);
 
+                    // Valida se o livro existe
                     if (livro == null) {
                         System.out.println("Livro nao encontrado!");
                     } else  {
                         System.out.println("Livro encontrado!");
                     }
 
+                    // Processa a devolução e exibe o resultado
                     System.out.println(biblioteca.devolverLivro(usuario, livro));
                 }
+                // CASO 5: Listar todos os livros do catálogo
                 case 5 -> {
+                    System.out.println("-------------------");
+                    System.out.println("LISTAGEM DE LIVROS");
+                    System.out.println("-------------------");
                     biblioteca.listarLivros();
                 }
-                case 6 -> {
 
+                // CASO 6: Listar todos os usuários cadastrados
+                case 6 -> {
+                    System.out.println("-------------------");
+                    System.out.println("LISTAGEM DE USUARIOS");
+                    System.out.println("-------------------");
+                    // TODO: Implementar listagem de usuários
                 }
             }
         }

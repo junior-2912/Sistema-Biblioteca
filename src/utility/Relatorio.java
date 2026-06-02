@@ -22,6 +22,7 @@ public class Relatorio<T> {
      * Imprime todos os elementos de um conjunto na tela.
      */
     public void imprimir(Set<T> lista) {
+        // Itera sobre cada elemento do Set e imprime chamando toString()
         for (T t : lista) {
             System.out.println(t);
         }

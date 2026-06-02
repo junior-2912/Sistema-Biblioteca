@@ -88,10 +88,12 @@ public class Livro implements Emprestavel {
      */
     @Override
     public boolean equals(Object o) {
+        // Verifica se o objeto é nulo ou de uma classe diferente
         if (o == null || getClass() != o.getClass()) return false;
 
+        // Converte o objeto para Livro e compara título e ISBN
         Livro livro = (Livro) o;
-        // Compara título e ISBN para identificar livros únicos
+        // Dois livros são iguais se têm MESMO título E MESMO ISBN
         return Objects.equals(titulo, livro.titulo) && Objects.equals(isbn, livro.isbn);
     }
 
@@ -103,7 +105,8 @@ public class Livro implements Emprestavel {
      */
     @Override
     public int hashCode() {
-        // Combina o hash do título com o hash do ISBN
+        // Calcula o hash do título e do ISBN usando Objects.hashCode()
+        // Combina os dois hashes usando a fórmula 31 * hash + novo_hash para evitar colisões
         int result = Objects.hashCode(titulo);
         result = 31 * result + Objects.hashCode(isbn);
         return result;
