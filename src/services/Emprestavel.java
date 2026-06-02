@@ -1,5 +1,11 @@
 package services;
 
+import entities.Livro;
+import entities.Usuario;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Interface que define o contrato para objetos que podem ser emprestados em uma biblioteca.
  *

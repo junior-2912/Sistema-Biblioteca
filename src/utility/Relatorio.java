@@ -1,6 +1,7 @@
 package utility;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Classe genérica para impressão e exibição de relatórios.
@@ -18,19 +19,11 @@ import java.util.List;
  */
 public class Relatorio<T> {
     /**
-     * Imprime uma lista de objetos do tipo T na tela.
-     *
-     * ⚠️ AINDA NÃO IMPLEMENTADO - Aguardando formatação de saída
-     *
-     * @param lista Lista de objetos a serem impressos
-     *
-     * TODO: Implementar a lógica de impressão
-     * - Iterar pela lista
-     * - Formatar cada item para exibição
-     * - Exibir número total de itens
-     * - Contabilizar informações relevantes
+     * Imprime todos os elementos de um conjunto na tela.
      */
-    public void imprimir(List<T> lista) {
-        // TODO: Implementar impressão da lista com formatação apropriada
+    public void imprimir(Set<T> lista) {
+        for (T t : lista) {
+            System.out.println(t);
+        }
     }
 }

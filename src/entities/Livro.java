@@ -2,11 +2,13 @@ package entities;
 
 import services.Emprestavel;
 
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Classe que representa um Livro no sistema de biblioteca.
- *
+ * <p>
  * A classe implementa a interface Emprestavel, indicando que um livro pode ser
  * emprestado e devolvido. Os livros são identificados de forma única pelo título
  * e ISBN para evitar duplicatas no catálogo.
@@ -15,50 +17,45 @@ import java.util.Objects;
  * @version 1.0
  */
 public class Livro implements Emprestavel {
+
     // Propriedades do livro
     private String titulo;   // Título do livro
     private String isbn;     // ISBN (International Standard Book Number) - identificador único
     private String autor;    // Nome do autor do livro
+    private boolean emprestado;
+
 
     /**
-     * Implementação do método emprestar() da interface Emprestavel.
-     * Este método será executado quando um livro for emprestado.
-     *
-     * ⚠️ AINDA NÃO IMPLEMENTADO - Aguardando lógica de controle de disponibilidade
+     * Marca o livro como emprestado.
      */
     @Override
     public void emprestar() {
-        // TODO: Implementar lógica de empréstimo
-        // - Verificar se o livro está disponível
-        // - Atualizar status de disponibilidade
-        // - Registrar data/hora do empréstimo
+        emprestado = true;
     }
 
     /**
-     * Implementação do método devolver() da interface Emprestavel.
-     * Este método será executado quando um livro for devolvido.
-     *
-     * ⚠️ AINDA NÃO IMPLEMENTADO - Aguardando lógica de controle de disponibilidade
+     * Marca o livro como devolvido.
      */
     @Override
     public void devolver() {
-        // TODO: Implementar lógica de devolução
-        // - Verificar se o livro está emprestado
-        // - Atualizar status de disponibilidade
-        // - Registrar data/hora da devolução
+        emprestado = false;
     }
 
     /**
      * Construtor do Livro
      *
      * @param titulo O título do livro
-     * @param isbn O identificador único do livro (ISBN)
-     * @param autor O nome do autor do livro
+     * @param isbn   O identificador único do livro (ISBN)
+     * @param autor  O nome do autor do livro
      */
     public Livro(String titulo, String isbn, String autor) {
         this.titulo = titulo;
         this.isbn = isbn;
         this.autor = autor;
+    }
+
+    public boolean isEmprestado() {
+        return emprestado;
     }
 
     /**
@@ -110,5 +107,10 @@ public class Livro implements Emprestavel {
         int result = Objects.hashCode(titulo);
         result = 31 * result + Objects.hashCode(isbn);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return titulo + " - " + autor + " | ISBN: " + isbn;
     }
 }
